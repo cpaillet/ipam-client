@@ -716,3 +716,12 @@ def test_edit_ip_description(testphpipam):
                                     'test ip #1 - changed')
     assert testphpipam.get_description_by_ip(
         ip_address('10.1.0.1')) == 'test ip #1 - changed'
+
+
+def test_edit_ip(testphpipam):
+    testphpipam.edit_ip_description('my_hostname', ip_interface('10.1.0.1/28'),
+                                    'test ip #1 - changed 2')
+    assert testphpipam.get_description_by_ip(
+        ip_address('10.1.0.1')) == 'test ip #1 - changed'
+    assert testphpipam.get_hostname_by_ip(
+        ip_address('10.1.0.1')) == 'my_hostname'
